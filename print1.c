@@ -46,10 +46,3 @@ int _printf(const char *format, ...)
 	va_end(l);
 	return (j);
 }
-int main(void)
-{
-	int n;
-	n = _printf("Length is mine");
-	printf("%d", n);
-	return (0);
-}
