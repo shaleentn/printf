@@ -32,8 +32,12 @@ int _printf(const char *format, ...)
 					string = va_arg(l, char *);
 					if (string == NULL)
 						write(1, "nil", 3);
-					write(1, string, strlen(string));
-					j += strlen(string);
+					while (*string != '\0')
+					{
+						write(1, string, 1);
+						string++;
+						j++;
+					}
 				}
 				else if (format[i] == '%')
 				{
