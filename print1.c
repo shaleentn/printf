@@ -1,4 +1,7 @@
 #include "main.h"
+#include <starg.h>
+#include <stdio.h>
+
 /**
   *_printf - produces output according to a format
   *@format: pointer to the string to be output
