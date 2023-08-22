@@ -1,4 +1,5 @@
 #include "main.h"
+#include <unistd.h>
 /**
   *_printf - produces output according to a format
   *@format: pointer to the string to be output
@@ -8,15 +9,12 @@ int _printf(const char *format, ...)
 {
 	int i, j, m;
 	char *string;
-	char c;
+	char c, t;
 	va_list l;
 
 	m = strlen(format);
-
 	va_start(l, format);
-
 	j = 0;
-
 	for (i = 0; i < m; i++)
 	{
 		if (format[i] != '\0')
@@ -27,20 +25,29 @@ int _printf(const char *format, ...)
 				if (format[i] == 'c')
 				{
 					c = va_arg(l, int);
-					j += printf("%c", c);
+					write(1, &c, 1);
+					j++;
 				}
 				else if (format[i] == 's')
 				{
 					string = va_arg(l, char *);
 					if (string == NULL)
-						printf("nil");
-					j += printf("%s", string);
+						write(1, "nil", 3);
+					write(1, string, strlen(string));
+					j += strlen(string);
 				}
 				else if (format[i] == '%')
-					j += printf("%%");
+				{
+					write(1, "%", 1);
+					j++;
+				}
 			}
 			else
-				j += putchar(format[i]);
+			{
+				t = format[i];
+				write(1, &t, 1);
+				j++;
+			}
 		}
 	}
 	va_end(l);
