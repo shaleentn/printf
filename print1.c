@@ -22,27 +22,37 @@ int _printf(const char *format, ...)
 
 	for (i = 0; i < m; i++)
 	{
-		if (format[i] == '%')
+		if (format[i] != '\0')
 		{
-			i++;
-			if (format[i] == 'c')
+			if (format[i] == '%')
 			{
-				c = va_arg(l, int);
-				j += printf("%c", c);
+				i++;
+				if (format[i] == 'c')
+				{
+					c = va_arg(l, int);
+					j += printf("%c", c);
+				}
+				else if (format[i] == 's')
+				{
+					string = va_arg(l, char *);
+					if (string == NULL)
+						printf("nil");
+					j += printf("%s", string);
+				}
+				else if (format[i] == '%')
+					j += printf("%%");
 			}
-			else if (format[i] == 's')
-			{
-				string = va_arg(l, char *);
-				if (string == NULL)
-					printf("nil");
-				j += printf("%s", string);
-			}
-			else if (format[i] == '%')
-				j += printf("%%");
+			else
+				j += putchar(format[i]);
 		}
-		else
-			j += putchar(format[i]);
 	}
 	va_end(l);
 	return (j);
+}
+int main(void)
+{
+	int n;
+	n = _printf("Length is mine");
+	printf("%d", n);
+	return (0);
 }
