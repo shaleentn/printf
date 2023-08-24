@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <limits.h>
 
 typedef struct format
 {
@@ -15,4 +16,5 @@ typedef struct format
 
 int _printf(const char *format, ...);
 int print_integer(va_list arg);
+
 #endif /* MAIN_H*/
