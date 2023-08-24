@@ -8,12 +8,6 @@
 #include <string.h>
 #include <limits.h>
 
-typedef struct format
-{
-	char *id;
-	int (*f)();
-} convert_match;
-
 int _printf(const char *format, ...);
 int print_integer(va_list arg);
 
