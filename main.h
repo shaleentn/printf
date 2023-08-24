@@ -13,8 +13,8 @@ typedef struct format
 	int (*f)();
 } convert_match;
 
-int printf_unsigned(va_list args);
 int printf_int(va_list args);
 int _printf(const char *format, ...);
+int _putchar(char c);
 
 #endif /* MAIN_H*/
