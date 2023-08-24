@@ -14,5 +14,5 @@ typedef struct format
 } convert_match;
 
 int _printf(const char *format, ...);
-
+int print_integer(va_list arg);
 #endif /* MAIN_H*/
