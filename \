@@ -1,56 +1,39 @@
-#include "main.h"
-/**
-  *print_binary - outputs the number in binary
-  *@num: the number to be converted
-  *Return: void
-  */
-void print_binary(unsigned int num)
+#ifndef MAIN_H
+#define MAIN_H
+
+#include <stdio.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+typedef struct format
 {
-	char d;
+	char *id;
+	int (*f)();
+} convert_match;
 
-	if (num > 1)
-	{
-		print_binary(num / 2);
-	}
-	 d = '0' + num % 2;
-	write(1, &d, 1);
-}
-/**
-  *_printf - prints output according to format
-  *@format: pointer to the string to be output
-  *Return: number of characters printed
-  */
-int _printf(const char *format, ...)
-{
-	int j, i, m;
-	va_list l;
-	char n;
+int printf_pointer(va_list val);
+int printf_hex_aux(unsigned long int num);
+int printf_HEX_aux(unsigned int num);
+int printf_exclusive_string(va_list val);
+int printf_HEX(va_list val);
+int printf_hex(va_list val);
+int printf_oct(va_list val);
+int printf_unsigned(va_list args);
+int printf_bin(va_list val);
+int printf_srev(va_list args);
+int printf_rot13(va_list args);
+int printf_int(va_list args);
+int printf_dec(va_list args);
+int _strlen(char *s);
+int *_strcpy(char *dest, char *src);
+int _strlenc(const char *s);
+int rev_string(char *s);
+int _strlenc(const char *s);
+int printf_37(void);
+int printf_char(va_list val);
+int printf_string(va_list val);
+int _putchar(char c);
 
-	m = strlen(format);
-	va_start(l, format);
-
-	j = 0;
-	for (i = 0; i < m; i++)
-	{
-		if (format[i] != '\0')
-		{
-			if (format[i] == '%')
-			{
-				i++;
-				if (format[i] == 'b')
-				{
-					print_binary(va_arg(l, unsigned int));
-					j += 1;
-				}
-			}
-			else
-			{
-				n = format[i];
-				write(1, &n, 1);
-				j++;
-			}
-		}
-	}
-	va_end(l);
-	return (j);
-}
+#endif /* MAIN_H*/
